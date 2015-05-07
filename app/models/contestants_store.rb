@@ -33,10 +33,6 @@ class ContestantsStore
     $redis["votes_#{contestant_id}"].to_i
   end
 
-  def self.vote!(contestant_id)
-    $redis.incr "votes_#{contestant_id}"
-  end
-
   def self.flushed_votes(contestant_id)
     $redis["flushed_#{contestant_id}"].to_i
   end

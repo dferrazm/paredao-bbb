@@ -9,9 +9,9 @@ class VotesController < ApplicationController
   end
 
   def create
-    recorder = VoteRecorder.new params[:contestant]
+    vote = VoteStore.new contestant_id: params[:contestant]
 
-    if recorder.record
+    if vote.save
       flash[:success] = I18n.t('votes.create.success')
       render_result
     else

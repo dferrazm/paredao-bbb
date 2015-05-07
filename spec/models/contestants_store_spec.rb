@@ -34,17 +34,6 @@ describe ContestantsStore do
       clear_redis
     end
 
-    describe 'vote!' do
-      it 'increments the votes counter for the contestant in redis' do
-        subject.class.vote! 1
-        expect($redis[:votes_1]).to eq '1'
-        subject.class.vote! 1
-        expect($redis[:votes_1]).to eq '2'
-        subject.class.vote! 2
-        expect($redis[:votes_2]).to eq '1'
-      end
-    end
-
     describe 'votes' do
       it 'returns the number of votes for a contestant stored in redis' do
         $redis[:votes_1] = 7

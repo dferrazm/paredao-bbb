@@ -81,7 +81,7 @@ describe VotesController do
         end
 
         it 'does not continue with the vote recorder to record the vote' do
-          expect_any_instance_of(VoteRecorder).to_not receive(:record)
+          expect_any_instance_of(VoteStore).to_not receive(:save)
           post :create
         end
 
@@ -94,7 +94,7 @@ describe VotesController do
 
       context 'on success' do
         before do
-          allow_any_instance_of(VoteRecorder).to receive(:record) { true }
+          allow_any_instance_of(VoteStore).to receive(:save) { true }
           post :create, contestant: 1
         end
 
@@ -107,7 +107,7 @@ describe VotesController do
 
       context 'on error' do
         before do
-          allow_any_instance_of(VoteRecorder).to receive(:record) { false }
+          allow_any_instance_of(VoteStore).to receive(:save) { false }
         end
 
         it 'set flash with success message' do

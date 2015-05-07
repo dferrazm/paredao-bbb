@@ -6,41 +6,6 @@ describe VoteRecorder do
       clear_redis
     end
 
-    describe 'record' do
-      context 'valid contestant votes' do
-        before do
-          @recorder = VoteRecorder.new first_contestant_id
-        end
-
-        it 'increments the votes counter for the contestant in the contestants store' do
-          expect(ContestantsStore).to receive(:vote!).with(first_contestant_id)
-          @recorder.record
-        end
-
-        it 'does not persist the vote' do
-          expect { @recorder.record }.to_not change(Vote, :count)
-        end
-
-        it 'returns true' do
-          expect(@recorder.record).to be_truthy
-        end
-      end
-
-      context 'invalid contestant votes' do
-        before do
-          @recorder = VoteRecorder.new nil
-        end
-
-        it 'does not persist the vote' do
-          expect { @recorder.record }.to_not change(Vote, :count)
-        end
-
-        it 'returns false' do
-          expect(@recorder.record).to be_falsy
-        end
-      end
-    end
-
     describe 'flush' do
       let(:stub_votes) {
         allow(ContestantsStore).to receive(:votes).with('1') { 10 }
