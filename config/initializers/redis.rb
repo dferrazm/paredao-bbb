@@ -1,0 +1,1 @@
+ContestantsStore.init

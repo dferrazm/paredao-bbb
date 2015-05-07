@@ -1,0 +1,25 @@
+<%= form_for @contestant, url: admin_contestants_path do |f| %>
+    <% if @contestant.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% @contestant.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div>
+      <label><%= t('.name') %>:</label>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <label><%= t('.avatar') %>:</label>
+      <%= f.file_field :avatar %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit value: t('.create') %>
+    </div>
+<% end %>

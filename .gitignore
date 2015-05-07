@@ -1,0 +1,18 @@
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Ignore all avatar uploads
+/public/uploads
+/public/tmp
+
+# Ignore local configuration
+/config/database.yml
+/config/local_env.yml
+
+.ruby-gemset
+.ruby-version
+
+# IDE
+/.idea
+/*.ids

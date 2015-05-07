@@ -1,0 +1,23 @@
+<%= content_tag :div, id: 'votes_percentage_container', data: { source: percentage_votes_path } do %>
+    <% @contestants_ids.each_slice(2) do |contestants| %>
+      <div class="row">
+      <% contestants.each do |id| %>
+          <%= content_tag :div, id: "contestant_#{id}_container", class: 'contestant' do %>
+              <%= contestant_avatar id %>
+              <span class="percentage"></span>
+          <% end %>
+      <% end %>
+      </div>
+    <% end %>
+
+    <div class="infos">
+      <div class="content">
+        <canvas id="chart" width="260" height="260"></canvas>
+        <div id="countdown" data-finish="<%= @finish %>" data-finish-label="<%= t '.countdown_label.finish' %>">
+          <span class="label top"><%= t '.countdown_label.running_top' %></span>
+          <span id="timer"></span>
+          <span class="label bottom"><%= t '.countdown_label.running_bottom' %></span>
+        </div>
+      </div>
+    </div>
+<% end %>

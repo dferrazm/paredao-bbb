@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ParedaoBbb</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<ul>
+		<li><%= link_to t('admin.stats.index.stats'), admin_stats_path %></li>
+		<li><%= link_to t('admin.stats.index.contestants'), admin_contestants_path %></li>
+		<li><%= link_to t('admin.stats.index.logout'), destroy_admin_session_path, method: :delete %></li>
+	</ul>
+
+	<%= render_messages %>
+
+	<%= yield %>
+
+</body>
+</html>

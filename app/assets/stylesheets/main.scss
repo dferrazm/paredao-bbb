@@ -1,0 +1,256 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #4B4B4B;
+}
+
+table .image, table .image img {
+  width: 60px;
+}
+
+.container {
+  width: 644px;
+  margin: 50px auto;
+  border: 5px solid #E5E5E5;
+  border-radius: 5px;
+  position: relative;
+
+  .close {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background: image-url('sprite.png') 0 -100px;
+    position: absolute;
+    top: -20px;
+    right: -25px;
+  }
+
+  .title {
+    text-align: center;
+    border-bottom: 8px solid #EEEEEE;
+    margin: 0 15px 20px 15px;
+
+    p {
+      display: inline-block;
+      text-transform: uppercase;
+      font-weight: 300;
+      font-size: 1.3em;
+      padding-left: 45px;
+      height: 40px;
+      background: image-url('sprite.png') 0 0;
+      margin-bottom: 10px;
+      line-height: 40px;
+
+      strong {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .info-message {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 300;
+  }
+
+  .info-message.error {
+    color: rgb(175, 0, 0);
+  }
+
+  .avatar {
+    display: block;
+    height: 280px;
+    background: image-url('sprite.png');
+    box-sizing: border-box;
+  }
+
+  form {
+    position: relative;    
+    text-align: center;
+
+    .contestant {
+      display: inline-block;
+      max-width: 300px;
+      vertical-align: top;
+      margin: 0 5px;
+
+      h4 { margin-bottom: 5px; }
+
+      .avatar {
+        width: 300px;
+        cursor: pointer;
+        overflow: hidden;
+
+        .inner {
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          border: 1px solid #EEEEEE;
+          border-radius: 3px;
+          overflow: hidden;
+        }
+      }
+
+      .avatar.active .inner {
+        border: 5px solid orange;
+      }
+
+      .call-for-action {
+        font-size: 0.75em;
+        color: gray;
+      }
+    }
+
+    .action {
+      padding: 20px 210px;
+      background: whitesmoke;
+      border-top: 2px solid #E5E5E5;
+
+      .button {
+        width: 100%;
+        color: #fff;
+        padding: 10px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        background-image: none;
+        border-radius: 4px;
+        font-weight: 700;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+        background-color: #006dcc;
+        background-image: -moz-linear-gradient(top,#08c,#04c);
+        background-image: -webkit-gradient(linear,0 0,0 100%,from(#08c),to(#04c));
+        background-image: -webkit-linear-gradient(top,#08c,#04c);
+        background-image: -o-linear-gradient(top,#08c,#04c);
+        background-image: linear-gradient(to bottom,#08c,#04c);
+        background-repeat: repeat-x;
+        border-color: #04c #04c #002a80;
+        border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+
+        &:hover {
+          background-color: #04c;
+          text-decoration: none;
+          background-position: 0 -15px;
+        }
+      }
+
+      #dynamic_recaptcha {
+        margin-top: 20px;
+      }
+    }
+
+    .captcha {
+      position: absolute;
+      top: 105%;
+      right: 160px;
+      padding-bottom: 30px;
+      max-width: 320px;
+
+      .error {
+        margin: 0;
+        font-size: 1em;
+        text-align: left;
+        padding-left: 10px;
+      }
+    }
+  }
+
+  #votes_percentage_container {
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+
+    .row {
+      .contestant {
+        display: inline-block;
+        position: relative;        
+
+        .avatar {
+          width: 250px;          
+        }
+
+        .percentage {
+          position: absolute;
+          top: 65px;
+          font-size: 1.8em;
+          font-weight: 300;          
+        }
+
+        &:nth-child(1) {
+          margin-right: 70px;
+
+          .avatar {
+            background-position: -50px 0;
+          }
+
+          .percentage {
+            right: 20px;
+          }  
+        }
+
+        &:nth-child(2) {
+          margin-left: 70px;
+
+          .avatar {
+            background-position: -300px 0;
+          }
+
+          .percentage {
+            left: 20px;
+          }  
+        }
+      }      
+    }
+
+    .infos {
+      width: 100%;
+      height: 260px;
+      position: absolute;
+      top: 95px;
+      text-align: center;
+
+      .content {
+        display: inline-block;
+        height: 100%;
+        width: 260px;
+        background: white;
+        border-radius: 100%;
+        position: relative;
+
+        #chart {
+          -ms-transform: rotate(180deg); /* IE 9 */
+          -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+          transform: rotate(180deg);
+        }
+
+        #countdown {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          padding-top: 85px;
+          display: none;
+
+          span {
+            display: block;
+          }
+
+          .label {
+            color: silver;
+            text-transform: uppercase;
+            font-size: 0.75em;
+          }
+
+          #timer {
+            font-size: 1.8em;
+            color: orange;
+            font-weight: 300;
+          }
+        }
+      }
+    }
+  }
+}
