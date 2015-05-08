@@ -11,10 +11,10 @@ feature 'Votes' do
         visit votes_path
         find("#contestant_#{contestant}_container .avatar").trigger 'click'
         click_button I18n.t('votes.index.submit_vote')
-        
+
         expect(page).to have_content I18n.t('votes.create.success_raw')
 
-        VoteRecorder.flush
+        VoteStore.flush_all
 
         visit result_votes_path
 
@@ -43,4 +43,3 @@ feature 'Votes' do
     end
   end
 end
-
