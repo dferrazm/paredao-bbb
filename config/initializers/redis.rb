@@ -1,1 +1,1 @@
-ContestantsStore.init
+ContestantStore.init_store

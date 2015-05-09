@@ -1,4 +1,16 @@
 class ContestantStore < Contestant
+  def self.init_store
+    $redis = Redis.new host: 'localhost', port: 6379
+    begin
+      $redis[:contestants] = Contestant.ids.join ','
+      votes = Vote.per_contestant
+      votes.each { |id, count| $redis["votes_#{id}"] = $redis["flushed_#{id}"] = count }
+    rescue => e
+      puts "Error when initing redits keys. Your DB may not be migrated yet: #{e.message}"
+      $redis[:contestants] = ''
+    end
+  end
+
   def self.create(params)
     contestant = super params
     contestant.tap { |cont| add cont if cont.persisted? }
@@ -22,8 +34,20 @@ class ContestantStore < Contestant
     $redis.del "flushed_#{contestant.id}"
   end
 
+  def self.votes(contestant_id)
+    $redis["votes_#{contestant_id}"].to_i
+  end
+
+  def self.flushed_votes(contestant_id)
+    $redis["flushed_#{contestant_id}"].to_i
+  end
+
+  def self.flush_votes!(contestant_id, votes)
+    $redis["flushed_#{contestant_id}"] = votes
+  end
+
   def destroy
     super
     self.class.remove self
-  end  
+  end
 end

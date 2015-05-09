@@ -12,14 +12,14 @@ describe VoteStats do
       end
 
       it 'returns the percentage of each contestant based on the cached counters' do
-        allow(ContestantsStore).to receive(:votes).with('1') { 1 } # 25 %
-        allow(ContestantsStore).to receive(:votes).with('2') { 3 } # 75 %
+        allow(ContestantStore).to receive(:votes).with('1') { 1 } # 25 %
+        allow(ContestantStore).to receive(:votes).with('2') { 3 } # 75 %
         expect(VoteStats.refresh_percentage).to eq({ percentages: { '1' => 25, '2' => 75 }, greater: '2'}.to_json)
       end
 
       it 'rounds up the percentage and returns integer numbers' do
-        allow(ContestantsStore).to receive(:votes).with('1') { 2 } # 29 %
-        allow(ContestantsStore).to receive(:votes).with('2') { 5 } # 71 %
+        allow(ContestantStore).to receive(:votes).with('1') { 2 } # 29 %
+        allow(ContestantStore).to receive(:votes).with('2') { 5 } # 71 %
         expect(VoteStats.refresh_percentage).to eq({ percentages: { '1' => 29, '2' => 71 }, greater: '2'}.to_json)
       end
     end

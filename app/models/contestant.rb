@@ -3,7 +3,7 @@ class Contestant < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   def self.cached_ids
-    ContestantsStore.ids
+    ContestantStore.ids
   end
 
   def self.avatar_path(id)
