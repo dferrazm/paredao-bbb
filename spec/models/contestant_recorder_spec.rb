@@ -1,19 +1,6 @@
 require 'rails_helper'
 
 describe ContestantRecorder do
-	describe 'create' do
-		it 'creates a contestant' do
-			expect(ContestantsStore).to receive(:add) { true }
-			expect { ContestantRecorder.create name: 'foo' }.to change(Contestant, :count).by(1)
-		end
-
-		it 'adds the contestant to the contestant store' do
-			contestant = contestants(:first)
-			allow(Contestant).to receive(:create) { contestant }
-			expect(ContestantsStore).to receive(:add).with(contestant)
-			ContestantRecorder.create name: 'foo'
-		end
-	end
 
 	describe 'destroy' do
 		it 'removes the contestant to the contestant store' do

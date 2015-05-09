@@ -10,7 +10,7 @@ class Admin::ContestantsController < Admin::ApplicationController
   end
 
   def create
-    @contestant = ContestantRecorder.create contestant_params
+    @contestant = ContestantStore.create contestant_params
 
     if @contestant.persisted?
       redirect_to action: 'index'
