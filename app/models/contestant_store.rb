@@ -13,4 +13,17 @@ class ContestantStore < Contestant
     $redis["votes_#{contestant.id}"] = 0
     $redis["flushed_#{contestant.id}"] = 0
   end
+
+  def self.remove(contestant)
+    current_ids = ids
+    current_ids.delete contestant.id.to_s
+    $redis[:contestants] = current_ids.join ','
+    $redis.del "votes_#{contestant.id}"
+    $redis.del "flushed_#{contestant.id}"
+  end
+
+  def destroy
+    super
+    self.class.remove self
+  end  
 end

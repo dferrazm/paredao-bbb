@@ -20,14 +20,14 @@ class Admin::ContestantsController < Admin::ApplicationController
   end
 
   def destroy
-    ContestantRecorder.destroy @contestant
+    @contestant.destroy
     redirect_to action: 'index'
   end
 
   private
 
   def set_contestant
-    @contestant = Contestant.find(params[:id])
+    @contestant = ContestantStore.find params[:id]
   end
 
   def contestant_params
