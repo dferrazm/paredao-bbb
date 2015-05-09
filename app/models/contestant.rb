@@ -1,5 +1,5 @@
 class Contestant < ActiveRecord::Base
-  after_destroy :destroy_votes
+  has_many :votes, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
   def self.avatar_path(id)
@@ -8,11 +8,5 @@ class Contestant < ActiveRecord::Base
 
   def avatar_path
     self.class.avatar_path id
-  end
-
-  private
-
-  def destroy_votes
-  	Vote.where(contestant_id: id).delete_all
   end
 end
