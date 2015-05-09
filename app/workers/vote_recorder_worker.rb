@@ -3,6 +3,6 @@ class VoteRecorderWorker
   sidekiq_options queue: :recorder
 
   def perform
-    VoteStore.flush_all
+    Cache::Vote.flush_all
   end
 end

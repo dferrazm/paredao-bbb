@@ -10,7 +10,7 @@ class Admin::ContestantsController < Admin::ApplicationController
   end
 
   def create
-    @contestant = ContestantStore.create contestant_params
+    @contestant = Cache::Contestant.create contestant_params
 
     if @contestant.persisted?
       redirect_to action: 'index'
@@ -27,7 +27,7 @@ class Admin::ContestantsController < Admin::ApplicationController
   private
 
   def set_contestant
-    @contestant = ContestantStore.find params[:id]
+    @contestant = Cache::Contestant.find params[:id]
   end
 
   def contestant_params

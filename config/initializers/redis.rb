@@ -1,1 +1,1 @@
-ContestantStore.init_store
+MyCache.init

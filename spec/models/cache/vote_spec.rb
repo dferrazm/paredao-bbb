@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe VoteStore do
+describe Cache::Vote do
   describe 'methods' do
     before do
       clear_redis
@@ -9,12 +9,12 @@ describe VoteStore do
     describe 'save' do
       context 'valid contestant votes' do
         before do
-          @vote = VoteStore.new contestant_id: first_contestant_id
+          @vote = Cache::Vote.new contestant_id: first_contestant_id
         end
 
-        it 'increments the votes counter for the contestant' do
+        it 'increments the votes cache for the contestant' do
+          expect(MyCache).to receive(:vote).with @vote.contestant_id
           @vote.save
-          expect($redis[:"votes_#{first_contestant_id}"]).to eq '1'
         end
 
         it 'does not persist the vote' do
@@ -28,7 +28,7 @@ describe VoteStore do
 
       context 'invalid contestant votes' do
         before do
-          @vote = VoteStore.new contestant_id: nil
+          @vote = Cache::Vote.new contestant_id: nil
         end
 
         it 'does not persist the vote' do
@@ -49,7 +49,7 @@ describe VoteStore do
       end
 
       it 'bulk inserts all the votes data from contestants store to the db' do
-        @vote = VoteStore.new contestant_id: 1
+        @vote = Cache::Vote.new contestant_id: 1
 
         # 1 vote in the DB
         allow(@vote).to receive(:persisted_count) { 1 }
@@ -63,15 +63,15 @@ describe VoteStore do
 
     describe 'count' do
       it 'returns the number of votes count in memory for the target contestant' do
-        vote = VoteStore.new contestant_id: 2
-        $redis['votes_2'] = 3
-        expect(vote.count).to eq 3
+        vote = Cache::Vote.new contestant_id: 2
+        expect(MyCache).to receive(:votes).with(vote.contestant_id)
+        vote.count
       end
     end
 
     describe 'persisted_count' do
       it 'returns count_for the target contestant' do
-        vote = VoteStore.new contestant_id: 2
+        vote = Cache::Vote.new contestant_id: 2
         allow(Vote).to receive(:count_for).with(2) { 10 }
         expect(vote.persisted_count).to eq 10
       end

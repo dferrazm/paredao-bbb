@@ -1,5 +1,6 @@
-class ContestantStore < Contestant
-  def self.init_store
+class MyCache
+  # Init the cache keys :contestants and :votes_[id]
+  def self.init
     $redis = Redis.new host: 'localhost', port: 6379
     begin
       $redis[:contestants] = Contestant.ids.join ','
@@ -9,11 +10,6 @@ class ContestantStore < Contestant
       puts "Error when initing redits keys. Your DB may not be migrated yet: #{e.message}"
       $redis[:contestants] = ''
     end
-  end
-
-  def self.create(params)
-    contestant = super params
-    contestant.tap { |cont| add cont if cont.persisted? }
   end
 
   def self.ids
@@ -36,8 +32,7 @@ class ContestantStore < Contestant
     $redis["votes_#{contestant_id}"].to_i
   end
 
-  def destroy
-    super
-    self.class.remove self
+  def self.vote(contestant_id)
+    $redis.incr "votes_#{contestant_id}"
   end
 end

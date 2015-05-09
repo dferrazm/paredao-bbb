@@ -1,12 +1,6 @@
 require 'rails_helper'
 
-describe Contestant do
-  describe 'cached_ids' do
-    it 'returns the cached ids from the redis store' do
-      expect(Contestant.cached_ids).to match_array %w(1 2)
-    end
-  end
-
+describe Contestant do  
   describe 'avatar_path' do
     it 'returns the avatar path fora given contestant id' do
       expect(Contestant.avatar_path 2).to eq '/uploads/2/avatar.png'

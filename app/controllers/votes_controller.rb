@@ -9,7 +9,7 @@ class VotesController < ApplicationController
   end
 
   def create
-    vote = VoteStore.new contestant_id: params[:contestant]
+    vote = Cache::Vote.new contestant_id: params[:contestant]
 
     if vote.save
       flash[:success] = I18n.t('votes.create.success')
@@ -42,12 +42,12 @@ class VotesController < ApplicationController
   end
 
   def render_index
-    @contestants_ids = Contestant.cached_ids
+    @contestants_ids = MyCache.ids
     render :index
   end
 
   def render_result
-    @contestants_ids = Contestant.cached_ids
+    @contestants_ids = MyCache.ids
     @finish = ENV['FINISH']
     render :result
   end

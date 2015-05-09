@@ -2,10 +2,6 @@ class Contestant < ActiveRecord::Base
   after_destroy :destroy_votes
   mount_uploader :avatar, AvatarUploader
 
-  def self.cached_ids
-    ContestantStore.ids
-  end
-
   def self.avatar_path(id)
     "/uploads/#{id}/avatar.png"
   end

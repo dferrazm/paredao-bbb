@@ -8,7 +8,7 @@ class Vote < ActiveRecord::Base
   def self.per_contestant
     votes = group(:contestant_id).count
     result = {}
-    Contestant.cached_ids.each { |contestant_id| result[contestant_id] = votes[contestant_id.to_i] || 0 }
+    MyCache.ids.each { |contestant_id| result[contestant_id] = votes[contestant_id.to_i] || 0 }
     result
   end
 

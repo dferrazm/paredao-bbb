@@ -22,7 +22,7 @@ class VoteStats
 
   def self.votes_per_contestant
     result = {}
-    Contestant.cached_ids.each { |id| result[id] = ContestantStore.votes id }
+    MyCache.ids.each { |id| result[id] = MyCache.votes id }
     result
   end
 end

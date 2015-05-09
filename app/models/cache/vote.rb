@@ -1,6 +1,6 @@
-class VoteStore < Vote
+class Cache::Vote < Vote
   def self.flush_all
-    Contestant.cached_ids.each do |id|
+    MyCache.ids.each do |id|
       vote = self.new contestant_id: id
       vote.flush
     end
@@ -8,7 +8,7 @@ class VoteStore < Vote
 
   def save
     if valid?
-      $redis.incr "votes_#{contestant_id}"
+      MyCache.vote contestant_id
       true
     end
   end
@@ -19,7 +19,7 @@ class VoteStore < Vote
   end
 
   def count
-    $redis["votes_#{contestant_id}"].to_i
+    MyCache.votes contestant_id
   end
 
   def persisted_count

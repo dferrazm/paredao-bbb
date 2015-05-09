@@ -14,7 +14,7 @@ feature 'Votes' do
 
         expect(page).to have_content I18n.t('votes.create.success_raw')
 
-        VoteStore.flush_all
+        Cache::Vote.flush_all
 
         visit result_votes_path
 
@@ -27,8 +27,8 @@ feature 'Votes' do
 
   feature 'Result' do
     before do
-      allow(ContestantStore).to receive(:votes).with('1') { 7 } # 35 %
-      allow(ContestantStore).to receive(:votes).with('2') { 13 } # 65 %
+      allow(MyCache).to receive(:votes).with('1') { 7 } # 35 %
+      allow(MyCache).to receive(:votes).with('2') { 13 } # 65 %
     end
 
     scenario 'opens up the result page showing the votes percentage for each contestant', js: true do
