@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20141201174140) do
     t.string "avatar"
   end
 
-  create_table "votes", id: false, force: true do |t|
+  create_table "votes", force: true do |t|
     t.integer "contestant_id"
     t.string  "time"
   end
