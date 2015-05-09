@@ -23,9 +23,7 @@ describe ContestantStore do
       create_list :second_contestant_vote, 1
       subject.class.init_store
       expect($redis[:votes_1]).to eq '2'
-      expect($redis[:flushed_1]).to eq '2'
       expect($redis[:votes_2]).to eq '1'
-      expect($redis[:flushed_2]).to eq '1'
     end
   end
 
@@ -52,7 +50,6 @@ describe ContestantStore do
         subject.class.add contestant
         expect($redis[:contestants]).to eq '1,2,45'
         expect($redis[:votes_45]).to eq '0'
-        expect($redis[:flushed_45]).to eq '0'
       end
     end
 
@@ -61,11 +58,9 @@ describe ContestantStore do
         contestant = build :contestant, id: 45
         $redis[:contestants] = '1,45,2'
         $redis[:votes_45] = '0'
-        $redis[:flushed_45] = '0'
         subject.class.remove contestant
         expect($redis[:contestants]).to eq '1,2'
         expect($redis[:votes_45]).to be_nil
-        expect($redis[:flushed_45]).to be_nil
       end
     end
 
@@ -75,24 +70,6 @@ describe ContestantStore do
         $redis[:votes_3] = 3
         expect(ContestantStore.votes 1).to eq 7
         expect(ContestantStore.votes 3).to eq 3
-      end
-    end
-
-    describe 'self.flushed_votes' do
-      it 'returns the number of flushed votes for a contestant stored in redis' do
-        $redis[:flushed_1] = 2
-        $redis[:flushed_3] = 1
-        expect(ContestantStore.flushed_votes 1).to eq 2
-        expect(ContestantStore.flushed_votes 3).to eq 1
-      end
-    end
-
-    describe 'self.flush_votes!' do
-      it 'updates the flushed votes counter for the contestant in redis' do
-        subject.class.flush_votes! 1, 10
-        expect($redis[:flushed_1]).to eq '10'
-        subject.class.flush_votes! 2, 7
-        expect($redis[:flushed_2]).to eq '7'
       end
     end
 

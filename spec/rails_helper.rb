@@ -62,10 +62,7 @@ RSpec.configure do |config|
 end
 
 def clear_redis
-  Contestant.ids.each do |id|
-    $redis.del "votes_#{id}"
-    $redis.del "flushed_#{id}"
-  end
+  Contestant.ids.each { |id| $redis.del "votes_#{id}" }
   $redis[:contestants] = Contestant.ids.join ','
 end
 
