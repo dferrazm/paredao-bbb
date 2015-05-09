@@ -31,7 +31,7 @@ class VotesController < ApplicationController
   private
 
   def check_finish
-    if Time.now >= Time.parse(VoteRecorder.finish)
+    if Time.now >= Time.parse(ENV['FINISH'])
       flash[:info] = I18n.t 'votes.result.info.finish'
       redirect_to action: 'result'
     end
@@ -48,7 +48,7 @@ class VotesController < ApplicationController
 
   def render_result
     @contestants_ids = Contestant.cached_ids
-    @finish = VoteRecorder.finish
+    @finish = ENV['FINISH']
     render :result
   end
 end
