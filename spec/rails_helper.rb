@@ -63,9 +63,10 @@ end
 
 def clear_redis
   Contestant.ids.each do |id|
-    $redis.del "votes_#{id}" 
-    $redis.del "flushed_#{id}" 
+    $redis.del "votes_#{id}"
+    $redis.del "flushed_#{id}"
   end
+  $redis[:contestants] = Contestant.ids.join ','
 end
 
 def contestants_ids
