@@ -16,12 +16,12 @@ class Vote < ActiveRecord::Base
     group(:time).count
   end
 
-  def save_many(amount)
+  def self.save_many(amount, contestant_id)
     # calculate the time to set for the votes
     time = Time.zone.now.strftime '%Y-%m-%d %H:00'
     # the values to be inserted in the votes table
     values = "(#{contestant_id},'#{time}')," * amount
     # bulk insert all the votes to the db
-    self.class.connection.execute "INSERT INTO votes (`contestant_id`,`time`) VALUES #{values.chop}"
+    connection.execute "INSERT INTO votes (`contestant_id`,`time`) VALUES #{values.chop}"
   end
 end

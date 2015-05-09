@@ -50,9 +50,8 @@ describe Vote do
 
     describe 'save_many' do
       it 'saves a given amount of vote for the target contestant' do
-        vote = Vote.new contestant_id: first_contestant_id
         allow(Time).to receive_message_chain(:zone, :now) { Time.new 2015,4,10,9,23,22 }
-        expect { vote.save_many 2 }.to change(Vote, :count).by(2)
+        expect { Vote.save_many 2, first_contestant_id }.to change(Vote, :count).by(2)
         Vote.all.each do |v|
           expect(v.contestant_id).to eq first_contestant_id
           expect(v.time).to eq '2015-04-10 09:00'
