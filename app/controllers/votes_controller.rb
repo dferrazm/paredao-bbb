@@ -25,7 +25,7 @@ class VotesController < ApplicationController
   end
 
   def percentage
-    render json: VoteStats.percentage
+    render json: Cache::Votes.percentage
   end
 
   private
