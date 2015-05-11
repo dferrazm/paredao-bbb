@@ -26,13 +26,13 @@ describe Vote do
 
     describe 'per_contestant' do
       it 'returns 0 for each contestant when there are no votes' do
-        expect(Vote.per_contestant).to eq({ first_contestant_id.to_s => 0, second_contestant_id.to_s => 0 })
+        expect(Vote.per_contestant).to eq({ first_contestant_id => 0, second_contestant_id => 0 })
       end
 
       it 'returns the total votes for each contestant' do
         create_list :first_contestant_vote, 1
         create_list :second_contestant_vote, 3
-        expect(Vote.per_contestant).to eq({ first_contestant_id.to_s => 1, second_contestant_id.to_s => 3 })
+        expect(Vote.per_contestant).to eq({ first_contestant_id => 1, second_contestant_id => 3 })
       end
     end
 

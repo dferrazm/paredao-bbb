@@ -7,9 +7,9 @@ class Vote < ActiveRecord::Base
 
   def self.per_contestant
     votes = group(:contestant_id).count
-    result = {}
-    MyCache.ids.each { |contestant_id| result[contestant_id] = votes[contestant_id.to_i] || 0 }
-    result
+    Contestant.ids.each_with_object({}) do |contestant_id, h|
+      h[contestant_id] = votes[contestant_id] || 0
+    end
   end
 
   def self.per_hour
