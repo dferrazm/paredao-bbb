@@ -23,7 +23,7 @@ class Cache::Votes
 
   def flush
     amount = count - persisted_count
-    Vote.save_many(amount, @contestant_id) unless amount.zero?
+    Vote.create_many(amount, @contestant_id) unless amount.zero?
   end
 
   def count

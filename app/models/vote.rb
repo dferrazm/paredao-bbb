@@ -16,7 +16,7 @@ class Vote < ActiveRecord::Base
     group(:time).count
   end
 
-  def self.save_many(amount, contestant_id)
+  def self.create_many(amount, contestant_id)
     # calculate the time to set for the votes
     time = Time.zone.now.strftime '%Y-%m-%d %H:00'
     # the values to be inserted in the votes table

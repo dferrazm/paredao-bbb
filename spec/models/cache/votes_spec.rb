@@ -38,7 +38,7 @@ describe Cache::Votes do
       # 3 votes in the memory store
       allow(vote).to receive(:count) { 3 }
 
-      expect(Vote).to receive(:save_many).with(2, 1) # amount, contestant_id
+      expect(Vote).to receive(:create_many).with(2, 1) # amount, contestant_id
       vote.flush
     end
   end
