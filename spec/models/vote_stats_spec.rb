@@ -23,19 +23,5 @@ describe VoteStats do
         expect(VoteStats.percentage).to eq({ percentages: { '1' => 29, '2' => 71 }, greater: '2'}.to_json)
       end
     end
-
-    describe 'total_contestant' do
-      it 'returns the per contestant votes' do
-        allow(Vote).to receive(:per_contestant) { 'votes per contestant' }
-        expect(VoteStats.total_per_contestant).to eq 'votes per contestant'
-      end
-    end
-
-    describe 'total_per_hour' do
-      it 'returns the per hour votes' do
-        allow(Vote).to receive(:per_hour) { 'votes per hour' }
-        expect(VoteStats.total_per_hour).to eq 'votes per hour'
-      end
-    end
   end
 end

@@ -1,12 +1,4 @@
 class VoteStats
-  def self.total_per_contestant
-    Vote.per_contestant
-  end
-
-  def self.total_per_hour
-    Vote.per_hour
-  end
-
   def self.percentage
     contestant_votes = votes_per_contestant
     total = contestant_votes.values.sum
