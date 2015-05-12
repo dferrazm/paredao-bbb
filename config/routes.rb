@@ -10,8 +10,8 @@ ParedaoBbb::Application.routes.draw do
   end
 
   namespace :admin do
+    root to: 'home#index'
     resources :contestants, except: [:show, :edit, :update]
-
     resources :stats, only: :index do
       collection do
         get :hourly
