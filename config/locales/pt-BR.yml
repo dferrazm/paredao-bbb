@@ -25,12 +25,14 @@ pt-BR:
         finish: "Votação encerrada"
 
   admin:
+    poll:
+      invalid: Necessário informar a data para término
     stats:
       index:
         stats: Estatísticas
         contestants: Participantes
         logout: Sair
-        title: "Estatísticas"        
+        title: "Estatísticas"
         loading: "Carregando..."
       total_stats:
         total: "Total (geral)"

@@ -13,6 +13,10 @@ class Poll
     Time.parse($redis[:deadline]) if $redis[:deadline].present?
   end
 
+  def finished?
+    deadline.nil? || deadline <= Time.now
+  end
+
   private
 
   def update_deadline(time)

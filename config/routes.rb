@@ -11,6 +11,8 @@ ParedaoBbb::Application.routes.draw do
 
   namespace :admin do
     root to: 'home#index'
+    post '/poll/start', to: 'home#start'
+    post '/poll/stop', to: 'home#stop'
     resources :contestants, except: [:show, :edit, :update]
     resources :stats, only: :index do
       collection do
