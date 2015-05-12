@@ -1,16 +1,4 @@
 <h1><%= t '.title' %></h1>
 
-<p id="total_general">
-  <%= "#{t('.total')}: #{@total}" %>
-</p>
-
-<% @stats.each_with_index do |stat, index| %>
-<p id="<%= "total_contestant_#{stat[0]}" %>">
-  <%= "#{t('.contestant', contestant: (index + 1))}: #{stat[1]}" %>
-</p>
-<% end %>
-
-<h3><%= t '.hourly' %></h3>
-<div id="total_hourly" data-source="<%= hourly_admin_stats_path %>">
-  <%= t '.loading' %>
-</div>
+<%= render 'total_stats' %>
+<%= render 'hourly_stats' %>

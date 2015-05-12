@@ -30,11 +30,13 @@ pt-BR:
         stats: Estatísticas
         contestants: Participantes
         logout: Sair
-        title: "Total de votos"
+        title: "Estatísticas"        
+        loading: "Carregando..."
+      total_stats:
         total: "Total (geral)"
         contestant: "Total (participante %{contestant})"
+      hourly_stats:
         hourly: "Total (por hora)"
-        loading: "Carregando..."
     contestants:
       index:
         title: "Lista de participantes"

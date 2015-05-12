@@ -1,0 +1,9 @@
+<p id="total_general">
+  <%= "#{t('.total')}: #{@total}" %>
+</p>
+
+<% @stats.each_with_index do |stat, index| %>
+  <p id="<%= "total_contestant_#{stat[0]}" %>">
+    <%= "#{t('.contestant', contestant: (index + 1))}: #{stat[1]}" %>
+  </p>
+<% end %>
