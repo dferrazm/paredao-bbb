@@ -31,14 +31,24 @@ describe Cache::Votes do
     end
 
     it 'bulk inserts all the votes data from contestants store to the db' do
-      vote = Cache::Votes.new 1
-
-      # 1 vote in the DB
-      allow(vote).to receive(:persisted_count) { 1 }
-      # 3 votes in the memory store
-      allow(vote).to receive(:count) { 3 }
-
       expect(Vote).to receive(:create_many).with(2, 1) # amount, contestant_id
+      flush 3, 1
+    end
+
+    it 'inserts nothing when amount 0' do
+      expect(Vote).to_not receive(:create_many)
+      flush 1, 1
+    end
+
+    it 'inserts nothing when amount < 0' do
+      expect(Vote).to_not receive(:create_many)
+      flush 0, 1
+    end
+
+    def flush(cache_count, persisted_count)
+      vote = Cache::Votes.new 1
+      allow(vote).to receive(:persisted_count) { persisted_count }
+      allow(vote).to receive(:count) { cache_count }
       vote.flush
     end
   end
