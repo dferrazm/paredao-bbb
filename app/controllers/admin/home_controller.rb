@@ -21,6 +21,6 @@ class Admin::HomeController < Admin::ApplicationController
   private
 
   def set_poll
-    @poll = Poll.new
+    @poll = Poll.current
   end
 end

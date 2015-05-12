@@ -12,14 +12,6 @@ describe VotesController do
   end
 
   shared_examples 'render_result' do
-    it 'assigns @contestants_ids' do
-      expect(assigns :contestants_ids).to_not be_nil
-    end
-
-    it 'assigns @finish' do
-      expect(assigns :finish).to_not be_nil
-    end
-
     it 'renders the :result template' do
       expect(response).to render_template :result
     end
@@ -28,12 +20,8 @@ describe VotesController do
   describe 'GET index' do
     context 'after finish' do
       before do
-        ENV['FINISH'] = (Time.now - 1.day).to_s
+        allow(Poll).to receive(:finished?) { true }
         get :index
-      end
-
-      after do
-        ENV['FINISH'] = (Time.now + 1.day).to_s
       end
 
       it 'set flash message informing the finish of the poll' do
@@ -47,6 +35,7 @@ describe VotesController do
 
     context 'before finish' do
       before do
+        allow(Poll).to receive(:finished?) { false }
         get :index
       end
 
@@ -57,12 +46,8 @@ describe VotesController do
   describe 'POST create' do
     context 'after finish' do
       before do
-        ENV['FINISH'] = (Time.now - 1.day).to_s
+        allow(Poll).to receive(:finished?) { true }
         post :create
-      end
-
-      after do
-        ENV['FINISH'] = (Time.now + 1.day).to_s
       end
 
       it 'set flash message informing the finish of the poll' do
@@ -75,6 +60,10 @@ describe VotesController do
     end
 
     context 'before finish' do
+      before do
+        allow(Poll).to receive(:finished?) { false }
+      end
+
       context 'failing on recaptcha' do
         before do
           allow(controller).to receive(:verify_recaptcha) { false }

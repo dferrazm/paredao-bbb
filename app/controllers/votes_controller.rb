@@ -29,7 +29,7 @@ class VotesController < ApplicationController
   private
 
   def check_finish
-    if Time.now >= Time.parse(ENV['FINISH'])
+    if Poll.finished?
       flash[:info] = I18n.t 'votes.result.info.finish'
       redirect_to action: 'result'
     end
@@ -46,7 +46,6 @@ class VotesController < ApplicationController
 
   def render_result
     @contestants_ids = MyCache.ids
-    @finish = ENV['FINISH']
     render :result
   end
 end

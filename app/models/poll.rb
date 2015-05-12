@@ -1,4 +1,14 @@
 class Poll
+  include Singleton
+
+  def self.current
+    Poll.instance
+  end
+
+  def self.finished?
+    Poll.current.finished?
+  end
+
   def start(deadline)
     Vote.destroy_all
     MyCache.init

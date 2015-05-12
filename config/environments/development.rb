@@ -26,7 +26,4 @@ ParedaoBbb::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-
-  # poll finish
-  ENV['FINISH'] = (Time.now + 1.day).to_s
 end
