@@ -1,6 +1,4 @@
 class VotesController < ApplicationController
-  layout 'poll'
-
   before_action :check_finish, only: [:index, :create]
   before_action :block_bots, only: :create
 
