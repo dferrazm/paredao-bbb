@@ -19,9 +19,11 @@ describe MyCache do
     end
 
     it 'loads the votes for each contestant' do
+      create_list :first_contestant_vote, 1
+      create_list :second_contestant_vote, 2
       MyCache.init
-      expect($redis[:votes_1]).to eq '0'
-      expect($redis[:votes_2]).to eq '0'
+      expect($redis[:votes_1]).to eq '1'
+      expect($redis[:votes_2]).to eq '2'
     end
   end
 
@@ -29,7 +31,7 @@ describe MyCache do
     before do
       clear_redis
     end
-    
+
     describe 'self.add' do
       it 'updates the redis value regarding the added contestant' do
         contestant = build :contestant, id: 45
