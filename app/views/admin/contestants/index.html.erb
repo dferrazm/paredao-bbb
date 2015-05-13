@@ -9,17 +9,9 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @contestants.each do |contestant| %>
-      <tr>
-        <td class="image"><%= image_tag contestant.avatar_path %></td>
-        <td><%= contestant.name %></td>
-        <td><%= link_to t('.destroy'), admin_contestant_path(contestant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <%= render @contestants %>
 </table>
 
 <br>
 
-<%= link_to t('.new'), new_admin_contestant_path %>
+<%= link_to t('.new'), new_admin_contestant_path if Poll.finished? %>

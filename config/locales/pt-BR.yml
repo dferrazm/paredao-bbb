@@ -55,11 +55,12 @@ pt-BR:
     contestants:
       index:
         title: "Lista de participantes"
-        destroy: "Remover"
         new: "Novo participante"
         avatar: "Avatar"
         name: "Nome"
         actions: "Ações"
+      contestant:
+        destroy: "Remover"
       new:
         title: "Novo participante"
       form:

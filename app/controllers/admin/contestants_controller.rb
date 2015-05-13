@@ -1,5 +1,6 @@
 class Admin::ContestantsController < Admin::ApplicationController
   before_action :set_contestant, only: :destroy
+  before_action :check_finish, except: :index
 
   def index
     @contestants = Contestant.all
@@ -25,6 +26,10 @@ class Admin::ContestantsController < Admin::ApplicationController
   end
 
   private
+
+  def check_finish
+    redirect_to action: 'index' unless Poll.finished?
+  end
 
   def set_contestant
     @contestant = Cache::Contestant.find params[:id]
