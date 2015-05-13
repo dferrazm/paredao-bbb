@@ -14,8 +14,8 @@ feature 'Stats' do
   end
 
   scenario 'shows the total of votes and total per contestant', js: true do
-    create_list :first_contestant_vote, 2, time: '2014-10-13 12:00'
-    create :second_contestant_vote, time: '2014-10-13 13:00'
+    create_list :lais_vote, 2, time: '2014-10-13 12:00'
+    create :yuri_vote, time: '2014-10-13 13:00'
 
     visit admin_stats_path
 
@@ -23,13 +23,8 @@ feature 'Stats' do
       expect(page).to have_content '3'
     end
 
-    within '#total_contestant_1' do
-      expect(page).to have_content '2'
-    end
-
-    within '#total_contestant_2' do
-      expect(page).to have_content '1'
-    end
+    expect(page).to have_content 'Total (Lais): 2'
+    expect(page).to have_content 'Total (Yuri): 1'
 
     within '#total_hourly' do
       expect(page).to have_content '2014-10-13 12:00: 2'

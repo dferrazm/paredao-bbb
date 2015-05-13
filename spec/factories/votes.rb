@@ -10,8 +10,16 @@ FactoryGirl.define do
       contestant_id { contestants_ids.first }
     end
 
+    factory :lais_vote do
+      contestant_id { 1 }
+    end
+
     factory :second_contestant_vote do
       contestant_id { contestants_ids.last }
+    end
+
+    factory :yuri_vote do
+      contestant_id { 2 }
     end
   end
 end

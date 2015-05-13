@@ -1,8 +1,7 @@
 class Admin::StatsController < Admin::ApplicationController
 
   def index
-    @stats = Vote.per_contestant
-    @total = @stats.values.inject { |sum, total| sum + total }
+    @stats = Stats.new
   end
 
   def hourly

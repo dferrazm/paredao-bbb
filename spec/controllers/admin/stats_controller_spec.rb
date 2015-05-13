@@ -9,28 +9,4 @@ describe Admin::StatsController do
       end
     end
   end
-
-  context 'when user logged in' do
-    before do
-      sign_in create(:admin)
-    end
-
-    describe 'GET index' do
-      before do
-        get :index
-      end
-
-      it 'assigns @total' do
-        expect(assigns :total).to_not be_nil
-      end
-
-      it 'assigns @stats' do
-        expect(assigns :stats).to_not be_nil
-      end
-
-      it 'renders the :index template' do
-        expect(response).to render_template :index
-      end
-    end
-  end
 end

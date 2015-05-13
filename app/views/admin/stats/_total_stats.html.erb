@@ -1,9 +1,9 @@
 <p id="total_general">
-  <%= "#{t('.total')}: #{@total}" %>
+  <%= t '.total', count: @stats.total %>
 </p>
 
-<% @stats.each_with_index do |stat, index| %>
-  <p id="<%= "total_contestant_#{stat[0]}" %>">
-    <%= "#{t('.contestant', contestant: (index + 1))}: #{stat[1]}" %>
+<% @stats.contestants.each do |contestant| %>
+  <p>
+    <%= t '.contestant', contestant: contestant[:name], count: contestant[:votes] %>
   </p>
 <% end %>

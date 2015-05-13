@@ -48,8 +48,8 @@ pt-BR:
         title: "Resultados"
         loading: "Carregando..."
       total_stats:
-        total: "Total (geral)"
-        contestant: "Total (participante %{contestant})"
+        total: "Total: %{count}"
+        contestant: "Total (%{contestant}): %{count}"
       hourly_stats:
         hourly: "Total (por hora)"
     contestants:
