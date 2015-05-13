@@ -12,7 +12,7 @@ initPollAvatars = ->
 getVotesPercentage = ->
   $votesPercentageContainer = $ '#votes_percentage_container'
 
-  $.get $votesPercentageContainer.data('source'), (data) ->    
+  $.get $votesPercentageContainer.data('source'), (data) ->
     chart_data = []
     only_zeroes = true
     $.each data.percentages, (id, value) ->
@@ -41,8 +41,6 @@ initCountdown = ->
   hours = undefined
   minutes = undefined
   seconds = undefined
-
-  current_date = new Date().getTime()
 
   # update the tag with id "countdown" every 1 second
   countdownInterval = setInterval (->
