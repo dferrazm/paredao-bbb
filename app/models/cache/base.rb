@@ -1,4 +1,4 @@
-class MyCache
+class Cache::Base
   # Init the cache keys :contestants and :votes_[id]
   def self.init
     $redis = Redis.new host: 'localhost', port: 6379

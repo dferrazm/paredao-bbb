@@ -40,12 +40,12 @@ class VotesController < ApplicationController
   end
 
   def render_index
-    @contestants_ids = MyCache.ids
+    @contestants_ids = Cache::Base.ids
     render :index
   end
 
   def render_result
-    @contestants_ids = MyCache.ids
+    @contestants_ids = Cache::Base.ids
     render :result
   end
 end

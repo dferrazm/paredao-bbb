@@ -8,7 +8,7 @@ describe Cache::Vote do
       end
 
       it 'increments the votes cache for the contestant' do
-        expect(MyCache).to receive(:vote).with @vote.contestant_id
+        expect(Cache::Base).to receive(:vote).with @vote.contestant_id
         @vote.save
       end
 

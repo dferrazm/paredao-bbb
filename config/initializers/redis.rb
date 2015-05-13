@@ -1,1 +1,1 @@
-MyCache.init
+Cache::Base.init

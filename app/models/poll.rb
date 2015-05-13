@@ -11,7 +11,7 @@ class Poll
 
   def start(deadline)
     Vote.destroy_all
-    MyCache.init
+    Cache::Base.init
     update_deadline deadline
   end
 

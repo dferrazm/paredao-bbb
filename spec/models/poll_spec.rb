@@ -11,7 +11,7 @@ describe Poll do
     end
 
     it 'init the cache' do
-      expect(MyCache).to receive(:init)
+      expect(Cache::Base).to receive(:init)
       poll.start anytime
     end
 
