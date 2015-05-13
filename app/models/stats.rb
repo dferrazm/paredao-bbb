@@ -7,12 +7,16 @@ class Stats
     @total ||= Vote.count
   end
 
+  def hourly
+    @hourly ||= Vote.per_hour
+  end
+
   private
 
   def get_stats_for_each_contestant
-    votes_per_contestant = Vote.per_contestant
+    per_contestant = Vote.per_contestant
     Contestant.all.each_with_object([]) do |contestant, array|
-      array << { name: contestant.name, votes: votes_per_contestant[contestant.id] }
+      array << { name: contestant.name, votes: per_contestant[contestant.id] }
     end
   end
 end

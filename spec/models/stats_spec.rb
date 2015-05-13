@@ -19,4 +19,11 @@ describe Stats do
       expect(stats.total).to eq 2
     end
   end
+
+  describe 'hourly' do
+    it 'return the votes per hour' do
+      allow(Vote).to receive(:per_hour) { 'votes per hour' }
+      expect(stats.hourly).to eq 'votes per hour'
+    end
+  end
 end

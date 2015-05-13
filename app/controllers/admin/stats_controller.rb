@@ -1,10 +1,15 @@
 class Admin::StatsController < Admin::ApplicationController
+  before_action :set_stats
 
-  def index
-    @stats = Stats.new
-  end
+  def index;end
 
   def hourly
-    render json: Vote.per_hour
+    render json: @stats.hourly
+  end
+
+  private
+
+  def set_stats
+    @stats = Stats.new
   end
 end
