@@ -25,14 +25,27 @@ pt-BR:
         finish: "Votação encerrada"
 
   admin:
+    home:
+      start:
+        explanation_html: 'Nenhum paredão está no ar.
+        <a href="/admin/stats">Veja o resultado</a>  do paredão anterior
+        (caso exista). Para começar um novo paredão, escolha o <i>deadline</i>
+        e aperte <b>Start</b>. Antes disso, certifique-se de que já
+        <a href="/admin/contestants">cadastrou todos os participantes</a> para
+        o novo paredão.'
+
+      stop:
+        explanation_html: 'Um <a href="/">paredão</a> está em andamento.
+        Para acompanhar os resultados <a href="/admin/stats">clique aqui</a>.
+        Aperta <b>Stop</b> para encerrar o paredão.'
     poll:
       invalid: Necessário informar a data para término
     stats:
       index:
-        stats: Estatísticas
+        stats: Resultados
         contestants: Participantes
         logout: Sair
-        title: "Estatísticas"
+        title: "Resultados"
         loading: "Carregando..."
       total_stats:
         total: "Total (geral)"
