@@ -15,7 +15,7 @@ class Cache::Votes
   end
 
   def self.flush_all
-    Cache::Base.ids.each do |id|
+    Cache::Contestant.ids.each do |id|
       votes = self.new id
       votes.flush
     end
@@ -37,8 +37,8 @@ class Cache::Votes
   private
 
   def self.votes_per_contestant
-    result = {}
-    Cache::Base.ids.each { |id| result[id] = Cache::Base.votes id }
-    result
+    Cache::Contestant.ids.each_with_object({}) do |id, hash| 
+      hash[id] = Cache::Base.votes id
+    end
   end
 end
