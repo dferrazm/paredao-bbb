@@ -3,7 +3,7 @@ class VotesController < ApplicationController
   before_action :block_bots, only: :create
 
   def index
-    render_index
+    render_view :index
   end
 
   def create
@@ -11,15 +11,15 @@ class VotesController < ApplicationController
 
     if vote.save
       flash[:success] = I18n.t('votes.create.success')
-      render_result
+      render_view :result
     else
       flash[:error] = I18n.t 'votes.create.error.invalid'
-      render_index
+      render_view :index
     end
   end
 
   def result
-    render_result
+    render_view :result
   end
 
   def percentage
@@ -36,16 +36,11 @@ class VotesController < ApplicationController
   end
 
   def block_bots
-    render_index unless verify_recaptcha
+    render_view :index unless verify_recaptcha
   end
 
-  def render_index
+  def render_view(view)
     @contestants = Cache::Base.ids.map { |c| ContestantPresenter.new c }
-    render :index
-  end
-
-  def render_result
-    @contestants_ids = Cache::Base.ids
-    render :result
+    render view
   end
 end
