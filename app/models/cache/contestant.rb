@@ -24,4 +24,8 @@ class Cache::Contestant
   def vote!
     $redis.incr "votes_#{id}"
   end
+
+  def votes_count
+    $redis["votes_#{id}"].to_i
+  end
 end

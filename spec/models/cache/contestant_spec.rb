@@ -31,6 +31,18 @@ describe Cache::Contestant do
     end
   end
 
+  describe 'votes_count' do
+    it 'returns the cached votes count' do
+      $redis[:votes_42] = '97'
+      expect(contestant.votes_count).to eq 97
+    end
+
+    it 'returns 0 when nil' do
+      $redis[:votes_42] = nil
+      expect(contestant.votes_count).to eq 0
+    end
+  end
+
   describe 'self.ids' do
     it 'returns the cached conestant ids as array' do
       $redis[:contestants] = '42,171,172'

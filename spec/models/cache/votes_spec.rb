@@ -11,14 +11,18 @@ describe Cache::Votes do
     end
 
     it 'returns the percentage of each contestant based on the cached counters' do
-      allow(Cache::Base).to receive(:votes).with('1') { 1 } # 25 %
-      allow(Cache::Base).to receive(:votes).with('2') { 3 } # 75 %
+      cont_1 = double id: '1', votes_count: 1 # 25 %
+      cont_2 = double id: '2', votes_count: 3 # 75 %
+      allow(Cache::Contestant).to receive(:all) { [cont_1, cont_2] }
+
       expect(Cache::Votes.percentage).to eq({ percentages: { '1' => 25, '2' => 75 }, greater: '2'}.to_json)
     end
 
     it 'rounds up the percentage and returns integer numbers' do
-      allow(Cache::Base).to receive(:votes).with('1') { 2 } # 29 %
-      allow(Cache::Base).to receive(:votes).with('2') { 5 } # 71 %
+      cont_1 = double id: '1', votes_count: 2 # 28,XX %
+      cont_2 = double id: '2', votes_count: 5 # 71,XX %
+      allow(Cache::Contestant).to receive(:all) { [cont_1, cont_2] }
+
       expect(Cache::Votes.percentage).to eq({ percentages: { '1' => 29, '2' => 71 }, greater: '2'}.to_json)
     end
   end
@@ -55,9 +59,9 @@ describe Cache::Votes do
 
   describe 'count' do
     it 'returns the number of votes count in memory for the target contestant' do
-      vote = Cache::Votes.new 2
-      expect(Cache::Base).to receive(:votes).with(2)
-      vote.count
+      votes = Cache::Votes.new 2
+      expect(votes.contestant).to receive(:votes_count)
+      votes.count
     end
   end
 

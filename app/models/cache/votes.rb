@@ -1,6 +1,8 @@
 class Cache::Votes
+  attr_reader :contestant
+
   def initialize(contestant_id)
-    @contestant_id = contestant_id
+    @contestant = Cache::Contestant.new contestant_id
   end
 
   def self.percentage
@@ -23,22 +25,22 @@ class Cache::Votes
 
   def flush
     amount = count - persisted_count
-    Vote.create_many(amount, @contestant_id) if amount > 0
+    Vote.create_many(amount, contestant.id) if amount > 0
   end
 
   def count
-    Cache::Base.votes @contestant_id
+    contestant.votes_count
   end
 
   def persisted_count
-    Vote.count_for @contestant_id
+    Vote.count_for contestant.id
   end
 
   private
 
   def self.votes_per_contestant
-    Cache::Contestant.ids.each_with_object({}) do |id, hash| 
-      hash[id] = Cache::Base.votes id
+    Cache::Contestant.all.each_with_object({}) do |contestant, hash|
+      hash[contestant.id] = contestant.votes_count
     end
   end
 end
