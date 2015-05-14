@@ -9,10 +9,7 @@ pt-BR:
     title: "Quem deve ser <strong>eliminado</strong>?"
     index:
       actions:
-        submit_vote: "Envie seu voto agora"
-      contestants:
-        contestant: "Participante %{contestant}"
-        call_for_action: "Para elminar o <strong>Participante %{contestant}</strong> pelo telefone disque <strong>0800-123-00%{contestant}</strong> ou mande um SMS para <strong>800%{contestant}</strong>"
+        submit_vote: "Envie seu voto agora"        
     create:
       success: "<strong>Parabéns!</strong> Seu voto foi enviado com sucesso."
       success_raw: "Parabéns! Seu voto foi enviado com sucesso."
@@ -26,6 +23,10 @@ pt-BR:
           running_top: "Faltam"
           running_bottom: "Para encerrar a votação"
           finish: "Votação encerrada"
+
+  presenters:
+    contestant:
+      call_for_action_html: "Para elminar o <strong>Participante %{contestant}</strong> pelo telefone disque <strong>0800-123-00%{contestant}</strong> ou mande um SMS para <strong>800%{contestant}</strong>"
 
   admin:
     home:

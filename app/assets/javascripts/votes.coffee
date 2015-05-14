@@ -5,8 +5,13 @@ $ ->
 
 initPollAvatars = ->
   $('form .contestant .avatar').click ->
-    $('.avatar').removeClass('active').children('input[type="radio"]').attr 'checked', false
-    $(@).addClass('active').children('input[type="radio"]').attr 'checked', true
+    $('.avatar')
+      .removeClass('active').parents('.contestant-container')
+      .children('.contestant-input').attr 'checked', false
+
+    $(@)
+      .addClass('active').parents('.contestant-container')
+      .children('.contestant-input').attr 'checked', true
     return
 
 getVotesPercentage = ->

@@ -40,7 +40,7 @@ class VotesController < ApplicationController
   end
 
   def render_index
-    @contestants_ids = Cache::Base.ids
+    @contestants = Cache::Base.ids.map { |c| ContestantPresenter.new c }
     render :index
   end
 

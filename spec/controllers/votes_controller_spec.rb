@@ -3,7 +3,7 @@ require 'rails_helper'
 describe VotesController do
   shared_examples 'render_index' do
     it 'assigns @contestants_ids with all the contestants' do
-      expect(assigns :contestants_ids).to_not be_nil
+      expect(assigns :contestants).to_not be_nil
     end
 
     it 'renders the :index template' do

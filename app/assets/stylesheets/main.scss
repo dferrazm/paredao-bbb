@@ -64,7 +64,7 @@ table .image, table .image img {
   }
 
   form {
-    position: relative;    
+    position: relative;
     text-align: center;
 
     .contestant {
@@ -158,6 +158,10 @@ table .image, table .image img {
     }
   }
 
+  .contestant-input {
+    visibility: hidden;
+  }
+
   #votes_percentage_container {
     position: relative;
     overflow: hidden;
@@ -166,17 +170,17 @@ table .image, table .image img {
     .row {
       .contestant {
         display: inline-block;
-        position: relative;        
+        position: relative;
 
         .avatar {
-          width: 250px;          
+          width: 250px;
         }
 
         .percentage {
           position: absolute;
           top: 65px;
           font-size: 1.8em;
-          font-weight: 300;          
+          font-weight: 300;
         }
 
         &:nth-child(1) {
@@ -188,7 +192,7 @@ table .image, table .image img {
 
           .percentage {
             right: 20px;
-          }  
+          }
         }
 
         &:nth-child(2) {
@@ -200,9 +204,9 @@ table .image, table .image img {
 
           .percentage {
             left: 20px;
-          }  
+          }
         }
-      }      
+      }
     }
 
     .infos {
