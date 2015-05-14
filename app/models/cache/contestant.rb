@@ -20,4 +20,8 @@ class Cache::Contestant
   def avatar_path
     Contestant.avatar_path id
   end
+
+  def vote!
+    $redis.incr "votes_#{id}"
+  end
 end

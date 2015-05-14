@@ -23,6 +23,14 @@ describe Cache::Contestant do
     end
   end
 
+  describe 'vote!' do
+    it 'incrementes the cached votes count by 1' do
+      $redis[:votes_42] = '1'
+      contestant.vote!
+      expect($redis[:votes_42]).to eq '2'
+    end
+  end
+
   describe 'self.ids' do
     it 'returns the cached conestant ids as array' do
       $redis[:contestants] = '42,171,172'

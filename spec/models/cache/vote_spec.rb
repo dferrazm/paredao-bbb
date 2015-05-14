@@ -7,8 +7,14 @@ describe Cache::Vote do
         @vote = Cache::Vote.new contestant_id: first_contestant_id
       end
 
+      it 'initializes the cached contestant' do
+        expect(@vote.contestant).to_not be_nil
+        expect(@vote.contestant.class).to eq Cache::Contestant
+        expect(@vote.contestant.id).to eq first_contestant_id
+      end
+
       it 'increments the votes cache for the contestant' do
-        expect(Cache::Base).to receive(:vote).with @vote.contestant_id
+        expect(@vote.contestant).to receive(:vote!)
         @vote.save
       end
 
