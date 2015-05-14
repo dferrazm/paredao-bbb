@@ -1,10 +1,8 @@
 class BasePresenter
+  attr_reader :target, :v
+
   def initialize(target)
     @target = target
-  end
-
-  # View helpers
-  def v
-    ActionController::Base.helpers
+    @v = ActionController::Base.helpers # view helpers
   end
 end

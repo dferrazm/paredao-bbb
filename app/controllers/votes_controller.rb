@@ -40,7 +40,7 @@ class VotesController < ApplicationController
   end
 
   def render_view(view)
-    @contestants = Cache::Base.ids.map { |c| ContestantPresenter.new c }
+    @contestants = Cache::Contestant.all.map { |c| ContestantPresenter.new c }
     render view
   end
 end
