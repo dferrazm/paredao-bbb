@@ -1,0 +1,10 @@
+<% @contestants_ids.each_slice(2) do |contestants| %>
+  <div class="row">
+    <% contestants.each do |id| %>
+      <%= content_tag :div, id: "contestant_#{id}_container", class: 'contestant' do %>
+        <%= contestant_avatar id %>
+        <span class="percentage"></span>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

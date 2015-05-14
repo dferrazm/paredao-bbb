@@ -1,26 +1,5 @@
 <%= form_tag votes_path, method: :post do %>
-    <% @contestants_ids.each_with_index do |contestant, index| %>
-        <%= content_tag :div, id: "contestant_#{contestant}_container", class: 'contestant' do %>
-            <%= content_tag :h4, t('.contestant', contestant: (index + 1)) %>
-
-            <%= contestant_avatar contestant do %>
-              <div class="inner"></div>
-              <%= radio_button_tag :contestant, contestant %>
-            <% end %>
-
-            <p class="call-for-action">
-              <%= t(".call_for_action", contestant: (index + 1)).html_safe %>
-            </p>
-        <% end %>
-    <% end %>
-
-    <div class="action">
-      <%= submit_tag t('.submit_vote'), class: 'button' %>
-    </div>
-
-    <div class="captcha">
-      <%= recapctha_messages %>
-      <%= recaptcha_tags ajax: true %>
-    </div>
+    <%= render 'votes/index/contestants' %>
+    <%= render 'votes/index/actions' %>
+    <%= render 'votes/index/captcha' %>
 <% end %>
-
