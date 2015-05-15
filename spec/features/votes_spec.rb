@@ -8,9 +8,11 @@ feature 'Votes' do
   feature 'Perform' do
     contestants_ids.each do |contestant|
       scenario "creates a vote to the contestant #{contestant}", js: true do
+        Poll.current.start Time.now.tomorrow
+
         visit votes_path
         find("#contestant_#{contestant}_container .avatar").trigger 'click'
-        click_button I18n.t('votes.index.submit_vote')
+        click_button I18n.t('votes.index.actions.submit_vote')
 
         expect(page).to have_content I18n.t('votes.create.success_raw')
 
@@ -21,6 +23,8 @@ feature 'Votes' do
         within "#contestant_#{contestant}_container" do
           expect(page).to have_content '100%'
         end
+
+        Poll.current.stop
       end
     end
   end
