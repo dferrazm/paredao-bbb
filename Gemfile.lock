@@ -70,6 +70,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    coffee_controllers-rails (2.0.0)
+      coffee-rails
     colorize (0.7.3)
     connection_pool (2.0.0)
     devise (3.4.0)
@@ -245,6 +247,7 @@ DEPENDENCIES
   carrierwave
   clockwork
   coffee-rails (~> 4.0.0)
+  coffee_controllers-rails
   connection_pool
   devise
   factory_girl_rails
