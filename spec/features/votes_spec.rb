@@ -12,8 +12,6 @@ feature 'Votes' do
 
         expect(page).to have_content I18n.t('votes.create.success_raw')
 
-        Cache::Votes.flush_all
-
         visit result_votes_path
 
         within "#contestant_#{contestant}_container" do
