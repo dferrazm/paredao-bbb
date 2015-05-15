@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 feature 'Votes' do
-  before do
-    clear_redis
-  end
-
   feature 'Perform' do
     contestants_ids.each do |contestant|
       scenario "creates a vote to the contestant #{contestant}", js: true do
