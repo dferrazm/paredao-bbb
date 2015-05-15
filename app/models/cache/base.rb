@@ -1,3 +1,5 @@
+require 'contestant'
+
 class Cache::Base
   def self.init
     $redis = Redis.new host: 'localhost', port: 6379
