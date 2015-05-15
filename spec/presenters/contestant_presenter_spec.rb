@@ -24,7 +24,7 @@ describe ContestantPresenter do
 
   describe 'call_for_action' do
     it 'builds the call for action message for the target' do
-      expected = I18n.t 'presenters.contestant.call_for_action_html', contestant: 42
+      expected = I18n.t 'presenters.contestant.call_for_action_html', contestant: 'John Doe', ext: '042'
       expect(contestant.call_for_action).to include expected
     end
   end

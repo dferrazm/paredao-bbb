@@ -26,7 +26,7 @@ pt-BR:
 
   presenters:
     contestant:
-      call_for_action_html: "Para elminar o <strong>Participante %{contestant}</strong> pelo telefone disque <strong>0800-123-00%{contestant}</strong> ou mande um SMS para <strong>800%{contestant}</strong>"
+      call_for_action_html: "Para elminar <strong>%{contestant}</strong> pelo telefone disque <strong>0800-123-%{ext}</strong> ou mande um SMS para <strong>8%{ext}</strong>"
 
   admin:
     home:
