@@ -8,9 +8,7 @@ It is playground to play out with different scenarios of high traffic requests, 
 
 The app itself simulates an eviction poll by 2+ contestants to see who is going to leave the Big Borther house.
 
-Para lidar com o alto número de requisições por segundo nas votações, foi decidido em não persistir em tempo real todos os votos enviados pelos usuários, pois isso geraria um alto número de operações de I/O no banco de dados por segundo. Com isso, os votos ficam na memória até que um scheduler job, rodando em background de 1 em 1 segundo, os le faz um bulk insert de todos os votos até aquele momento.
-
-Além disso, a porcentagem do resultado da votação é cacheada também por um outro background job que roda de 1 em 1 segundo. Com isso, a tela com os resultados NÃO são apresentadas em tempo real, no pior dos casos com um delay de 1 segundo.
+To handle the high number of requests per second when the poll is running, the votes are not persisted in real time, because this would generate a high number of I/O operations. Instead, the votes are stored in a memory cache (Redis) and a background job runs every second, reads them and performs a bulk insert into the DB.
 
 ### Setting up & Running
 
