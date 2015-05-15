@@ -4,7 +4,7 @@ pt-BR:
       incorrect-captcha-sol: 'O texto não corresponde a imagem abaixo. Tente novamente.'
   errors:
     messages:
-      extension_white_list_error: 'inválido. Necssário ser uma imagem em PNG.'
+      extension_white_list_error: 'inválido. Necessário ser uma imagem em PNG.'
   votes:
     title: "Quem deve ser <strong>eliminado</strong>?"
     index:
