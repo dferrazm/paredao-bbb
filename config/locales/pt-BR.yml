@@ -9,7 +9,7 @@ pt-BR:
     title: "Quem deve ser <strong>eliminado</strong>?"
     index:
       actions:
-        submit_vote: "Envie seu voto agora"        
+        submit_vote: "Envie seu voto agora"
     create:
       success: "<strong>Parabéns!</strong> Seu voto foi enviado com sucesso."
       success_raw: "Parabéns! Seu voto foi enviado com sucesso."
@@ -43,7 +43,7 @@ pt-BR:
         Para acompanhar os resultados <a href="/admin/stats">clique aqui</a>.
         Aperta <b>Stop</b> para encerrar o paredão.'
     poll:
-      invalid: Necessário informar a data para término
+      invalid: Data inválida. Necessário informar a data de término.
     stats:
       index:
         stats: Resultados

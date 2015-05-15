@@ -1,6 +1,6 @@
 <p><%= t '.explanation_html' %></p>
 
 <%= form_tag admin_poll_start_path do %>
-  <%= text_field_tag :deadline %>
+  <%= text_field_tag :deadline, nil, placeholder: 'Ex: 2015-02-18 09:30' %>
   <%= submit_tag 'Start' %>
 <% end %>

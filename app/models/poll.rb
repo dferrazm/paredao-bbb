@@ -10,9 +10,13 @@ class Poll
   end
 
   def start(deadline)
-    Vote.destroy_all
-    Cache::Base.init
-    update_deadline deadline
+    if update_deadline deadline
+      Vote.destroy_all
+      Cache::Base.init
+      return true
+    end
+
+    false
   end
 
   def stop
@@ -20,7 +24,7 @@ class Poll
   end
 
   def deadline
-    Time.parse($redis[:deadline]) if $redis[:deadline].present?
+    @deadline || load_deadline
   end
 
   def finished?
@@ -30,6 +34,17 @@ class Poll
   private
 
   def update_deadline(time)
-    $redis[:deadline] = time.to_s
+    begin
+      @deadline = time.is_a?(Time) ? time : Time.parse(time)
+    rescue => e
+      return false
+    end
+
+    $redis[:deadline] = @deadline.to_s
+    true
+  end
+
+  def load_deadline
+    @deadline = Time.parse($redis[:deadline]) if $redis[:deadline].present?
   end
 end

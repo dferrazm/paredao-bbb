@@ -4,9 +4,7 @@ class Admin::HomeController < Admin::ApplicationController
   def index;end
 
   def start
-    if params[:deadline].present?
-      @poll.start(Time.parse params[:deadline])
-    else
+    unless @poll.start(params[:deadline])
       flash[:error] = I18n.t 'admin.poll.invalid'
     end
 
