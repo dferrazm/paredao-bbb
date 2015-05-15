@@ -27,39 +27,4 @@ describe Cache::Base do
       expect($redis[:name_2]).to eq 'Yuri'
     end
   end
-
-  describe 'methods' do
-    before do
-      clear_redis
-    end
-
-    describe 'self.add' do
-      it 'updates the redis value regarding the added contestant' do
-        contestant = build :contestant, id: 45
-        Cache::Base.add contestant
-        expect($redis[:contestants]).to eq '1,2,45'
-        expect($redis[:votes_45]).to eq '0'
-      end
-    end
-
-    describe 'self.remove' do
-      it 'updates the redis value regarding the added contestant' do
-        contestant = build :contestant, id: 45
-        $redis[:contestants] = '1,45,2'
-        $redis[:votes_45] = '0'
-        Cache::Base.remove contestant
-        expect($redis[:contestants]).to eq '1,2'
-        expect($redis[:votes_45]).to be_nil
-      end
-    end
-
-    describe 'self.votes' do
-      it 'returns the number of votes for a contestant stored in redis' do
-        $redis[:votes_1] = 7
-        $redis[:votes_3] = 3
-        expect(Cache::Base.votes 1).to eq 7
-        expect(Cache::Base.votes 3).to eq 3
-      end
-    end
-  end
 end
