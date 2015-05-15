@@ -54,6 +54,7 @@ table .image, table .image img {
 
   .info-message.error {
     color: rgb(175, 0, 0);
+    font-weight: 500;
   }
 
   .avatar {
@@ -90,8 +91,14 @@ table .image, table .image img {
         }
       }
 
-      .avatar.active .inner {
-        border: 5px solid orange;
+      .avatar {
+        &.active .inner {
+          border: 5px solid orange;
+        }
+
+        &.inactive {
+          opacity: 0.4;
+        }
       }
 
       .call-for-action {

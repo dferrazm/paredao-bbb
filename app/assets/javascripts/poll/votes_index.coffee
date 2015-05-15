@@ -6,12 +6,12 @@
   initPollAvatars: ->
     $('form .contestant .avatar').click ->
       $('.avatar')
-        .removeClass('active').parents('.contestant-container')
-        .children('.contestant-input').attr 'checked', false
+        .removeClass('active').addClass('inactive').parents('.contestant-container')
+        .children('.contestant-input').removeAttr 'checked'
 
       $(@)
-        .addClass('active').parents('.contestant-container')
-        .children('.contestant-input').attr 'checked', true
+        .addClass('active').removeClass('inactive').parents('.contestant-container')
+        .children('.contestant-input').attr('checked', true).click()
       return
 
   handleFormSubmit: ->
@@ -22,11 +22,11 @@
        @isVoteSelected() and @isCaptchaFilled()
 
   isVoteSelected: ->
-      if $('.contestant-input:checked').length is 0
-        $('form').scrollTo().find('.action').before @errorMsg('Vote em alguém para sair!')
-        false
-      else
-        true
+    if $('.contestant-input:checked').length is 0
+      $('form').scrollTo().find('.action').before @errorMsg('Vote em alguém para sair!')
+      false
+    else
+      true
 
   isCaptchaFilled: ->
     if $('#recaptcha_response_field').val() is ''
