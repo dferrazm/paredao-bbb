@@ -23,14 +23,16 @@
 
   isVoteSelected: ->
     if $('.contestant-input:checked').length is 0
-      $('form').scrollTo().find('.action').before @errorMsg('Vote em alguém para sair!')
+      $form = $ 'form'
+      $form.scrollTo().find('.action').before @errorMsg($form.data 'error-empty')
       false
     else
       true
 
   isCaptchaFilled: ->
     if $('#recaptcha_response_field').val() is ''
-      $('.captcha').scrollTo().prepend @errorMsg('Preencha o teste abaixo.')
+      $captcha = $ '.captcha'
+      $captcha.scrollTo().prepend @errorMsg($captcha.data 'error-empty')
       false
     else
       true

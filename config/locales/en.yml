@@ -1,23 +1,74 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  recaptcha:
+    errors:
+      empty: Fill in the captcha below.
+      incorrect-captcha-sol: 'The text did not match the image. Try again.'
+  errors:
+    messages:
+      extension_white_list_error: 'invalid. Must be a PNG image.'
+  votes:
+    title: "Who's gonna be <strong>eliminated</strong>?"
+    index:
+      actions:
+        submit_vote: "Vote now!"
+    create:
+      success: "<strong>Congrats!</strong> Your vote was sent successfully."
+      success_raw: "Congrats! Your vote was sent successfully."
+      error:
+        empty: "Make your choice!"
+        invalid: "Invalid vote! Try again."
+    result:
+      info:
+        finish: "The poll is finished!"
+      chart_and_timer:
+        countdown_label:
+          running_top: "Remaining"
+          running_bottom: "To finish the poll"
+          finish: "Poll finished"
+
+  presenters:
+    contestant:
+      call_for_action_html: "To vote on <strong>%{contestant}</strong> via phone dial <strong>0800-123-%{ext}</strong> or send a text message to <strong>8%{ext}</strong>"
+
+  admin:
+    home:
+      start:
+        explanation_html: 'No poll is currently running.
+        <a href="/admin/stats">Check the results</a> from the previous poll
+        (if there was one). To start a new poll, enter the <i>deadline</i>
+        and push <b>Start</b>. But first, check if you have
+        <a href="/admin/contestants">registered all the contestants</a> for the newly poll.'
+
+      stop:
+        explanation_html: 'A <a href="/">poll</a> is online right now.
+        To follow the results <a href="/admin/stats">click here</a>.
+        Hit <b>Stop</b> to finish the poll.'
+    poll:
+      invalid: Invalid date. The finish date (deadline) must be entered.
+    stats:
+      index:
+        stats: Results
+        contestants: Contestants
+        logout: Logout
+        title: "Results"
+        loading: "Loading..."
+      total_stats:
+        total: "Total: %{count}"
+        contestant: "Total (%{contestant}): %{count}"
+      hourly_stats:
+        hourly: "Total (hourly)"
+    contestants:
+      index:
+        title: "Contestants List"
+        new: "New Contestant"
+        avatar: "Avatar"
+        name: "Name"
+        actions: "Actions"
+      contestant:
+        destroy: "Remove"
+      new:
+        title: "New Contestant"
+      form:
+        name: "Contestant's Name"
+        avatar: "Avatar"
+        create: "Create Contestant"

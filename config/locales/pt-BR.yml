@@ -1,6 +1,7 @@
 pt-BR:
   recaptcha:
     errors:
+      empty: Preencha o teste abaixo.
       incorrect-captcha-sol: 'O texto não corresponde a imagem abaixo. Tente novamente.'
   errors:
     messages:
@@ -14,6 +15,7 @@ pt-BR:
       success: "<strong>Parabéns!</strong> Seu voto foi enviado com sucesso."
       success_raw: "Parabéns! Seu voto foi enviado com sucesso."
       error:
+        empty: "Vote em alguém para sair!"
         invalid: "Voto inválido! Tente novamente."
     result:
       info:
