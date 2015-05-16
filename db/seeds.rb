@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
-if Admin.count.zero?
-  Admin.create email: 'admin@example.com', password: 'password'
+if AdminUser.count.zero?
+  AdminUser.create email: 'admin@example.com', password: 'password'
 end
 
 if Contestant.count.zero?

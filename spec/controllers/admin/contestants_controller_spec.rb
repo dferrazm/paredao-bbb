@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Admin::ContestantsController do
   before do
-    sign_in create(:admin)
+    sign_in create(:admin_user)
   end
 
   context 'with a poll running' do

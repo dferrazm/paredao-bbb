@@ -5,7 +5,7 @@ describe Admin::StatsController do
     %w(index).each do |action|
       it "requires authentication for :#{action}" do
         get action.to_sym
-        expect(response).to redirect_to new_admin_session_path
+        expect(response).to redirect_to new_admin_user_session_path
       end
     end
   end

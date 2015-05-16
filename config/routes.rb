@@ -1,5 +1,5 @@
 ParedaoBbb::Application.routes.draw do
-  devise_for :admins
+  devise_for :admin_users
   root to: 'votes#index'
 
   resources :votes, only: [:index, :create] do

@@ -12,7 +12,7 @@
     <li><%= link_to t('admin.stats.index.home'), admin_root_path %></li>
 		<li><%= link_to t('admin.stats.index.stats'), admin_stats_path %></li>
 		<li><%= link_to t('admin.stats.index.contestants'), admin_contestants_path %></li>
-		<li><%= link_to t('admin.stats.index.logout'), destroy_admin_session_path, method: :delete %></li>
+		<li><%= link_to t('admin.stats.index.logout'), destroy_admin_user_session_path, method: :delete %></li>
 	</ul>
 
 	<%= render_messages %>

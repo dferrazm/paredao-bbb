@@ -5,7 +5,7 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 def login_admin
-  login_as create(:admin), scope: :admin
+  login_as create(:admin_user), scope: :admin_user
 end
 
 feature 'Stats' do
