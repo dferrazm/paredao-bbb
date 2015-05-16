@@ -14,4 +14,4 @@
 
 <br>
 
-<%= link_to t('.new'), new_admin_contestant_path if Poll.finished? %>
+<%= link_to t('.new'), new_admin_contestant_path, class: 'button' if Poll.finished? %>

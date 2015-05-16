@@ -2,22 +2,26 @@
 <html>
 <head>
   <title>Paredao BBB | Admin</title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= stylesheet_link_tag    "admin/application", media: "all" %>
   <%= javascript_include_tag "admin/application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-	<ul>
-    <li><%= link_to t('admin.stats.index.home'), admin_root_path %></li>
-		<li><%= link_to t('admin.stats.index.stats'), admin_stats_path %></li>
-		<li><%= link_to t('admin.stats.index.contestants'), admin_contestants_path %></li>
-		<li><%= link_to t('admin.stats.index.logout'), destroy_admin_user_session_path, method: :delete %></li>
-	</ul>
+	<header>
+    <ul>
+      <li><%= link_to t('admin.stats.index.home'), admin_root_path %></li>
+      <li><%= link_to t('admin.stats.index.stats'), admin_stats_path %></li>
+      <li><%= link_to t('admin.stats.index.contestants'), admin_contestants_path %></li>
+      <li><%= link_to t('admin.stats.index.logout'), destroy_admin_user_session_path, method: :delete %></li>
+    </ul>
+  </header>
 
-	<%= render_messages %>
+	<div class="container">
+    <%= render_messages %>
 
-	<%= yield %>
+    <%= yield %>
+  </div>
 
 </body>
 </html>
